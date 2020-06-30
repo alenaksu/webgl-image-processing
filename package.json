@@ -1,0 +1,14 @@
+{
+  "name": "webgl-image-processing",
+  "version": "1.0.0",
+  "description": "Code of the WebGL Image Processing talk",
+  "main": "index.html",
+  "scripts": {
+    "start": "http-server"
+  },
+  "author": "alenaksu",
+  "license": "ISC",
+  "dependencies": {
+    "http-server": "^0.12.3"
+  }
+}
