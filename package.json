@@ -4,11 +4,12 @@
   "description": "Code of the WebGL Image Processing talk",
   "main": "index.html",
   "scripts": {
-    "start": "http-server"
+    "start": "es-dev-server --app-index index.html --node-resolve --dedupe --watch"
   },
   "author": "alenaksu",
   "license": "ISC",
   "dependencies": {
+    "es-dev-server": "^1.56.0",
     "http-server": "^0.12.3"
   }
 }
