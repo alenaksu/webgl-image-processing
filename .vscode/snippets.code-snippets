@@ -42,5 +42,39 @@
             "	gui.add(filters, name, -1, 1, 0.01).onChange(draw);",
             "}"
         ]
+    },
+    "Create Shader": {
+        "scope": "javascript",
+        "prefix": "cshader",
+        "body": [
+            "const $1 = gl.createShader($2);",
+            "gl.shaderSource($1, ``);",
+            "gl.compileShader($1);"
+        ]
+    },
+    "Create program": {
+        "scope": "javascript",
+        "prefix": "cprogram",
+        "body": [
+            "const program = gl.createProgram();",
+            "gl.attachShader(program, vertexShader);",
+            "gl.attachShader(program, fragmentShader);",
+        ]
+    },
+    "Texture wrapping": {
+        "scope": "javascript",
+        "prefix": "twrap",
+        "body": [
+            "gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, $1);",
+            "gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, $1);"
+        ]
+    },
+    "Texture filters": {
+        "scope": "javascript",
+        "prefix": "tfilters",
+        "body": [
+            "gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, $1);",
+            "gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, $1);"
+        ]
     }
 }
