@@ -69,6 +69,10 @@ gl.shaderSource(
         // Applies unsharp mask
         color.rgb += (color.rgb - blurred) * sharpness * 2.0;
 
+        // Temperature
+        color.r += temperature;
+        color.b -= temperature;
+
         // Brightness
         color.rgb += brightness;
 
@@ -78,10 +82,6 @@ gl.shaderSource(
         // Saturazione
         vec3 desaturatedColor = vec3((color.r + color.g + color.b) / 3.0);
         color.rgb = mix(desaturatedColor, color.rgb, (saturation + 1.0));
-
-        // Temperature
-        color.r += temperature;
-        color.b -= temperature;
 
         // Sets the color of the current pixel by assigning it
         // to the internal variable gl_FragColor
