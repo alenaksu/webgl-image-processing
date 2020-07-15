@@ -217,4 +217,4 @@ image.onload = () => {
     draw();
 };
 // Loads the image (NOTE: must be same-origin)
-image.src = 'colosseo.jpg';
+image.src = 'image.jpg';
