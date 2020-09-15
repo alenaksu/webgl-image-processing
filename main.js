@@ -26,7 +26,8 @@ gl.shaderSource(
         // Sets the position of the current vertex to an interal variable
         gl_Position = vec4(position, 0.0, 1.0);
     }
-`);
+`
+);
 
 // Attaches the source to the shader
 gl.shaderSource(
@@ -87,13 +88,14 @@ gl.shaderSource(
         // to the internal variable gl_FragColor
         gl_FragColor = color;
     }
-`);
+`
+);
 
 // Compiles the shaders
 gl.compileShader(vertexShader);
 gl.compileShader(fragmentShader);
 // Checks whether there are compilation errors
-if (!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS) ) {
+if (!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS)) {
     const info = gl.getShaderInfoLog(fragmentShader);
     throw 'Could not compile WebGL program. \n\n' + info;
 }
@@ -114,15 +116,7 @@ gl.useProgram(program);
 
 // Defines the coordinates of the 2 trinagles
 // required to draw a plane that fills the clip-space
-const planeVertices = [
-    -1, -1,
-    -1, 1,
-    1, 1,
-
-    1, 1,
-    -1, -1,
-    1, -1
-];
+const planeVertices = [-1, -1, -1, 1, 1, 1, 1, 1, -1, -1, 1, -1];
 
 // Creates a new buffer
 const vertexBuffer = gl.createBuffer();
@@ -171,7 +165,7 @@ const uniforms = {
     contrast: 0,
     saturation: 0,
     temperature: 0,
-    sharpness: 0
+    sharpness: 0,
 };
 
 const draw = requestAnimationFrame.bind(null, () => {
@@ -193,7 +187,10 @@ const draw = requestAnimationFrame.bind(null, () => {
     // Sets the canvas normalized resolution
     gl.uniform2fv(
         gl.getUniformLocation(program, 'resolution'),
-        new Float32Array([1 / gl.drawingBufferWidth, 1 / gl.drawingBufferHeight])
+        new Float32Array([
+            1 / gl.drawingBufferWidth,
+            1 / gl.drawingBufferHeight,
+        ])
     );
 
     // Draw the buffer array on the screen
@@ -201,10 +198,15 @@ const draw = requestAnimationFrame.bind(null, () => {
 });
 
 // Set-ups the GUI
-const gui = new dat.GUI();
+const gui = new Tweakpane();
 for (const name of Object.keys(uniforms)) {
-    gui.add(uniforms, name, -1, 1, 0.01).onChange(draw);
+    gui.addInput(uniforms, name, {
+        min: -1,
+        max: 1,
+        step: 0.01,
+    });
 }
+gui.on('change', draw);
 
 const image = new Image();
 image.onload = () => {
